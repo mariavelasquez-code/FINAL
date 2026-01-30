@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Helados Panda</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    margin:0;
+    background:#1c1c1c;
+    color:#f5f5f5;
+}
+
+/* ===== HEADER ===== */
+header{
+    background:#b11226;
+    padding:20px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+header h1{
+    margin:0;
+    letter-spacing:2px;
+}
+
+/* ===== BOTÓN ATRÁS ===== */
+.btn-atras{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #d4a017;
+    color: #1c1c1c;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,.5);
+    z-index: 999;
+}
+
+.btn-atras:hover{
+    background:#b11226;
+    color:#fff;
+}
+
+/* ===== BOTÓN CARRITO ===== */
+.carrito-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#d4a017;
+    color:#1c1c1c;
+    padding:12px 18px;
+    border-radius:30px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.5);
+    z-index:1000;
+}
+
+.carrito-btn span{
+    background:#b11226;
+    color:#fff;
+    border-radius:50%;
+    padding:4px 8px;
+    margin-left:6px;
+}
+
+/* ===== CARRITO DENTRO DEL BOTÓN ===== */
+.carrito-panel{
+    display:none;
+    position:absolute;
+    top:55px;
+    right:0;
+    width:320px;
+    background:#2b2b2b;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.6);
+}
+
+.carrito-panel.activo{
+    display:block;
+}
+
+.carrito-panel h2{
+    margin-top:0;
+    color:#d4a017;
+}
+
+.lista-carrito{
+    font-size:14px;
+    margin-top:10px;
+    line-height:1.6;
+}
+
+.total{
+    margin-top:15px;
+    font-weight:bold;
+    font-size:16px;
+}
+
+/* ===== CATÁLOGO ===== */
+.catalogo{
+    max-width:1400px;
+    margin:40px auto;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.producto{
+    background:#2b2b2b;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.5);
+    transition:0.3s;
+}
+
+.producto img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.info{
+    padding:18px;
+    text-align:center;
+}
+
+.info h3{
+    color:#d4a017;
+    margin-bottom:8px;
+}
+
+.precio{
+    margin:12px 0;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.btn{
+    display:inline-block;
+    padding:10px 22px;
+    background:#b11226;
+    color:#fff;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#d4a017;
+    color:#1c1c1c;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BOTÓN ATRÁS -->
+<a href="MENU.HTML" class="btn-atras">⬅ Atrás</a>
+
+<header>
+    <h1>🍦 Catálogo Helados Panda 🍦</h1>
+</header>
+
+<!-- BOTÓN CARRITO CON CARRITO DENTRO -->
+<div class="carrito-btn" onclick="toggleCarrito(event)">
+🛒 Carrito <span id="contador">0</span>
+
+    <div class="carrito-panel" id="carrito">
+        <h2>Tu compra</h2>
+        <div class="lista-carrito" id="lista"></div>
+        <div class="total" id="total">Total: Bs. 0</div>
+        <button class="btn" onclick="vender()" style="margin-top:15px; width:100%;">Vender</button>
+    </div>
+</div>
+
+<section class="catalogo">
+
+<div class="producto">
+<img src="paleta leche.jpg">
+<div class="info">
+<h3>Paleta de Leche</h3>
+<div class="precio">Bs. 3.00</div>
+<button class="btn" onclick="agregar('Paleta de Leche',3)">Agregar</button>
+</div>
+</div>
+
+<div class="producto">
+<img src="paleta frutal.jpg">
+<div class="info">
+<h3>Paleta Frutal</h3>
+<div class="precio">Bs. 3.50</div>
+<button class="btn" onclick="agregar('Paleta Frutal',3.5)">Agregar</button>
+</div>
+</div>
+
+<div class="producto">
+<img src="cono.jpg">
+<div class="info">
+<h3>Cono Panda</h3>
+<div class="precio">Bs. 5.00</div>
+<button class="btn" onclick="agregar('Cono Panda',5)">Agregar</button>
+</div>
+</div>
+
+<div class="producto">
+<img src="vaso.jpg">
+<div class="info">
+<h3>Helado en Vaso</h3>
+<div class="precio">Bs. 4.00</div>
+<button class="btn" onclick="agregar('Helado en Vaso',4)">Agregar</button>
+</div>
+</div>
+
+<div class="producto">
+<img src="sandwich.jpg">
+<div class="info">
+<h3>Sándwich Helado</h3>
+<div class="precio">Bs. 5.50</div>
+<button class="btn" onclick="agregar('Sándwich Helado',5.5)">Agregar</button>
+</div>
+</div>
+
+<div class="producto">
+<img src="mini.jpg">
+<div class="info">
+<h3>Panda Mini</h3>
+<div class="precio">Bs. 2.50</div>
+<button class="btn" onclick="agregar('Panda Mini',2.5)">Agregar</button>
+</div>
+</div>
+
+<div class="producto">
+<img src="premium.jpg">
+<div class="info">
+<h3>Panda Premium</h3>
+<div class="precio">Bs. 7.00</div>
+<button class="btn" onclick="agregar('Panda Premium',7)">Agregar</button>
+</div>
+</div>
+
+<div class="producto">
+<img src="familiar.jpg">
+<div class="info">
+<h3>Presentación Familiar</h3>
+<div class="precio">Bs. 25.00</div>
+<button class="btn" onclick="agregar('Presentación Familiar',25)">Agregar</button>
+</div>
+</div>
+
+</section>
+
+<script>
+let carrito=[];
+
+function agregar(nombre,precio){
+    let i=carrito.findIndex(x=>x.nombre===nombre);
+    i>=0?carrito[i].cantidad++:carrito.push({nombre,precio,cantidad:1});
+    renderCarrito();
+}
+
+function renderCarrito(){
+    const lista=document.getElementById("lista");
+    let total=0, contador=0;
+    lista.innerHTML="";
+    carrito.forEach((item,i)=>{
+        total+=item.precio*item.cantidad;
+        contador+=item.cantidad;
+        lista.innerHTML+=`
+        <div style="margin-bottom:6px;">
+        ${item.nombre} x ${item.cantidad}
+        <button onclick="borrar(${i})"
+        style="background:#b11226;color:#fff;border:none;border-radius:5px;padding:2px 6px;cursor:pointer;">
+        Borrar
+        </button>
+        </div>`;
+    });
+    document.getElementById("contador").innerText=contador;
+    document.getElementById("total").innerText="Total: Bs. "+total.toFixed(2);
+}
+
+function borrar(i){
+    carrito.splice(i,1);
+    renderCarrito();
+}
+
+function vender(){
+    if(!carrito.length){alert("El carrito está vacío");return;}
+    alert("¡Venta realizada!");
+    carrito=[];
+    renderCarrito();
+}
+
+function toggleCarrito(e){
+    e.stopPropagation();
+    document.getElementById("carrito").classList.toggle("activo");
+}
+</script>
+
+</body>
+</html>

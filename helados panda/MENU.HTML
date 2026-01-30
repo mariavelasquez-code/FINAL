@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Heladería Panda 🐼🍨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1600&q=80')
+                  center / cover no-repeat;
+      overflow: hidden;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Contenido principal */
+    .contenido {
+      color: #fff;
+      text-align: center;
+      max-width: 520px;
+      padding: 20px;
+    }
+
+    .contenido h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .contenido p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Botón */
+    .botones {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-principal {
+      padding: 15px 32px;
+      border-radius: 30px;
+      background: #ff914d;
+      color: #fff;
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-principal:hover {
+      background: #ff7a2f;
+      transform: scale(1.06);
+    }
+
+    /* WhatsApp */
+    .whatsapp {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
+
+    /* Mensaje WhatsApp */
+    .mensaje-wsp {
+      position: fixed;
+      bottom: 35px;
+      right: 100px;
+      color: white;
+      max-width: 360px;
+    }
+
+    .mensaje-wsp h2 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .mensaje-wsp p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .mensaje-wsp {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="overlay">
+    <div class="contenido">
+      <h1>Heladería Panda 🐼🍨</h1>
+      <p>Helados artesanales, cremosos y llenos de felicidad para refrescar tu día.</p>
+
+      <div class="botones">
+        <a href="PANDA.HTML" class="btn-principal">Ver productos</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje junto al WhatsApp -->
+  <div class="mensaje-wsp">
+    <h2>🐼🍨 ¡Déjate tentar!</h2>
+    <p>El sabor perfecto te está esperando.<br>Pide ahora y disfruta cada cucharada.</p>
+  </div>
+
+  <!-- Botón WhatsApp -->
+  <a href="https://wa.me/69608793" target="_blank" class="whatsapp">💬</a>
+
+</body>
+</html>
